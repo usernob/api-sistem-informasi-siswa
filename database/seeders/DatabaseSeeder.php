@@ -10,7 +10,6 @@ use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
-use MongoDB\Laravel\Eloquent\Casts\ObjectId;
 
 class DatabaseSeeder extends Seeder
 {

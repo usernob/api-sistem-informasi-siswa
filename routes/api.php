@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('kelas', App\Http\Controllers\KelasController::class)->parameters([
+    "kelas" => "kelas"
+])->missing(function () {
+    return response(['message' => 'data not found'], 404);
+});
+
+
+Route::apiResource('siswa', \App\Http\Controllers\SiswaController::class)->missing(function () {
+    return response(['message' => 'data not found'], 404);
+});
