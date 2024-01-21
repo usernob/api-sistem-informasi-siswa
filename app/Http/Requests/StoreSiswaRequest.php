@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreKelasRequest extends FormRequest
+class StoreSiswaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,22 +15,32 @@ class StoreKelasRequest extends FormRequest
         return true;
     }
 
-    public function defaultRules()
+    public function defaultRules(): array
     {
         return [
-            "kelas" => [
+            "nama" => [
                 "required",
-                Rule::in(["X", "XI", "XII"])
+                "string",
+                "max:255"
             ],
-            "jurusan" => [
+            "alamat" => [
                 "required",
-                Rule::in(["RPL", "DPIB", "KGSP", "TB", "AKL", "TPTU"])
+                "string",
+                "max:255"
             ],
-            "suffix" => [
+            "nomor_telepon" => [
                 "required",
-                "uppercase",
-                "max:1"
+                "string",
+                "max:255"
             ],
+            "jenis_kelamin" => [
+                "required",
+                Rule::in(["laki-laki", "perempuan"])
+            ],
+            "kelas_id" => [
+                "nullable",
+                "exists:App\Models\Kelas,_id"
+            ]
         ];
     }
     /**

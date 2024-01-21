@@ -16,11 +16,12 @@ class SiswaFactory extends Factory
      */
     public function definition(): array
     {
+        $gender = fake()->randomElement(["male", "female"]);
         return [
-            "nama" => fake()->name(),
+            "nama" => fake()->name($gender),
             "alamat" => fake()->address(),
             "nomor_telepon" => fake()->phoneNumber(),
-            "jenis_kelamin" => fake()->randomElement(["Laki-laki", "Perempuan"]),
+            "jenis_kelamin" => $gender == "male" ? "laki-laki" : "perempuan",
         ];
     }
 }
